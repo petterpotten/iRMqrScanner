@@ -1,0 +1,20 @@
+#Archivos sensibles
+/php/ConnDB.php
+*.sql
+
+#Dependencias
+/node_modules/
+/vendor/
+
+#Entorno
+.env
+*.env.local
+
+#Sistema/IDE
+.DS_Store
+.idea/
+Thumbs.db
+
+#Logs y caché
+*.log
+.cache/

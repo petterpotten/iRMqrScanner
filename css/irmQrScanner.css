@@ -1,0 +1,348 @@
+/*
+ * @Proyecto: iRMqrScanner v1.3
+ *  iRM
+       (Internal relationship management)
+ *     [Gestion de relaciones internas]
+ * @Autor: bypetterpotten
+ * @Fecha: Julio 2022
+ * 
+ * @ig: @bypetterpotten
+ */
+ @charset "UTF-8";
+
+ /* Región Login */
+ .login-container {
+     margin: 0 auto;
+     width: 250px;
+ }
+ 
+ .login-content {
+     width: 250px;
+ }
+ 
+ .profile-img {
+     position: relative;
+     left: 50px;
+     top: -10px;
+     width: 150px;
+     height: 150px;
+     display: block;
+     -moz-border-radius: 0%;
+     -webkit-border-radius: 0%;
+     border-radius:0%;
+ }
+ 
+ .Login input[type="text"],
+ .Login input[type="password"] {
+     position: relative;
+     height: 20px;
+     margin: 1px;
+     width: 70%;
+     left: 30px;
+     font-size: 10px;
+ }
+ 
+ .btn-login {
+     height: 40px;
+     width: 75%;
+     margin: 25px;
+ }
+ 
+ .Login {
+     max-width: 330px;
+     padding: 15px;
+     margin: 0 auto;
+     margin-bottom: 10px;
+     font-weight: bolder;
+     position: relative;
+     font-size: 10px;
+     height: auto;
+     -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+     box-sizing: content-box;
+     z-index: 2;
+ }
+ 
+ .form-signin {
+     max-width: 330px;
+     padding: 15px;
+     margin: 0 auto;
+ }
+ 
+ .form-signin .form-signin-heading,
+ .form-signin .checkbox {
+     margin-bottom: 10px;
+ }
+ 
+ .form-signin .checkbox {
+     font-weight: bolder;
+ }
+ 
+ .form-signin .form-control {
+     position: relative;
+     font-size: 10px;
+     height: auto;
+     padding: 10px;
+     -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+     box-sizing: content-box;
+ }
+ 
+ .form-signin .form-control:focus {
+     z-index: 2;
+ }
+ 
+ .form-signin input[type="text"] {
+     margin-bottom: -1px;
+     border-bottom-left-radius: 0;
+     border-bottom-right-radius: 0;
+ }
+ 
+ .form-signin input[type="password"] {
+     margin-bottom: 10px;
+     border-top-left-radius: 0;
+     border-top-right-radius: 0;
+ }
+ 
+ .account-wall {
+     margin-top: 0px;
+     padding: 0px 0px 0px 0px;
+     background-color: #f7f7f7;
+     -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+ }
+ 
+ .login-title {
+     color: #555;
+     font-size: 18px;
+     font-weight: 400;
+     display: block;
+ }
+ 
+ /* Región Menu */
+ .menu-container {
+     margin-left: 0px;
+ }
+ 
+ /* Estilos Generales */
+ a, a:visited, a:focus, a:active, a:hover {
+     outline:0 none !important;
+     text-decoration: none !important;
+     font-weight: bolder;
+ }
+ 
+ ul {
+     list-style-type: none;
+     font-weight: bolder;
+ }
+ 
+ .display-none {
+     display: none;
+ }
+ 
+ .text-width {
+     width: 350px;
+     font-weight: bolder;
+ }
+ 
+ .span1 { width: 60px; }
+ .span2 { width: 160px; }
+ .span3 { width: 220px; }
+ .span4 { width: 300px; }
+ .span5 { width: 380px; }
+ .span6 { width: 460px; }
+ .span7 { width: 525px; }
+ .span8 { width: 620px; }
+ .span9 { width: 700px; }
+ .span10 { width: 780px; }
+ .span11 { width: 860px; }
+ .span12 { width: 980px; }
+ 
+ .checkbox-inline {
+     display: inline-block!important;
+     padding-left: 20px;
+     margin-bottom: 0;
+     vertical-align: middle;
+     font-weight: 400;
+     cursor: pointer;
+ }
+
+/* Estilos para Modal */
+#Modal_Mensajes, #Modal_Motivo_Registro, #Modal_Usuarios, #Modal_Empleados {
+    background-color: rgba(0,0,0, 0.) !important;}
+
+/* Region Tablas*/
+.tabla a:link {
+	color: #666;
+	font-weight: bold;
+	text-decoration:none;
+}
+.tabla a:visited {
+	color: #999999;
+	font-weight:bold;
+	text-decoration:none;
+}
+.tabla a:active,
+.tabla a:hover {
+	color: #bd5a35;
+	text-decoration:underline;
+}
+.tabla 
+{
+	width:100%;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#202020;
+	font-size:10px;
+	font-weight: bold;
+	/*text-shadow: 1px 1px 0px #fff;*/
+	background:#eaebec;
+	/*margin:5px;*/
+	border:#ccc 1px solid;
+
+	/*-moz-border-radius:3px;*/
+	-webkit-border-radius:3px;
+	border-radius:3px;
+}
+.tabla th {
+	padding:10px;
+	border-top:1px solid #fafafa;
+	border-bottom:1px solid #e0e0e0;
+
+	background: #ededed;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+	background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
+}
+.tabla th:first-child {
+	text-align: left;
+	padding-left:20px;
+}
+.tabla tr:first-child th:first-child {
+	/*-moz-border-radius-topleft:3px;*/
+	-webkit-border-top-left-radius:3px;
+	border-top-left-radius:3px;
+}
+.tabla tr:first-child th:last-child {
+	/*-moz-border-radius-topright:3px;*/
+	-webkit-border-top-right-radius:3px;
+	border-top-right-radius:3px;
+}
+.tabla tr {
+	text-align: center;
+	padding-left:20px;
+}
+.tabla td:first-child {
+	text-align: left;
+	padding-left:20px;
+	border-left: 0;
+}
+.tabla td {
+	padding:10px;
+	border-top: 1px solid #ffffff;
+	border-bottom:1px solid #e0e0e0;
+	border-left: 1px solid #e0e0e0;
+}
+.tabla tr.even td {
+	background: #f6f6f6; /*#bd5a35;*/
+	background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
+	background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6);
+}
+.tabla tr:last-child td {
+	border-bottom:0;
+}
+.tabla tr:last-child td:first-child {
+	/*-moz-border-radius-bottomleft:3px;*/
+	-webkit-border-bottom-left-radius:3px;
+	border-bottom-left-radius:3px;
+}
+.tabla tr:last-child td:last-child {
+	/*-moz-border-radius-bottomright:3px;*/
+	-webkit-border-bottom-right-radius:3px;
+	border-bottom-right-radius:3px;
+}
+.tabla tr:hover td 
+{
+	background: #428BCA;
+}
+
+.activo
+{
+    background: #428BCA;
+}
+
+
+/* SCROLL DE TABLA RegistrosQrHoy */
+div.tableContainerRegistrosQrHoy 
+{
+    clear: both;
+    height: 345px;
+    overflow: auto;             
+}
+div.tableContainerRegistrosQrHoy table 
+{
+    float: left;
+}
+html>body tbody.scrollContentRegistrosQrHoy 
+{
+    display:block;
+    height: 345px;
+    overflow: auto;
+}
+tbody.scrollContentRegistrosQrHoy td, tbody.scrollContentRegistrosQrHoy tr.normalRowRegistrosQrHoy td 
+{
+    padding-top: 2px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+}
+tbody.scrollContentRegistrosQrHoy tr.alternateRowRegistrosQrHoy td 
+{
+    padding-top: 2px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+}
+
+
+
+/*CSS PARA SCROLL DE TABLAS Consulta*/
+
+div.tableContainer 
+{
+	clear: both;
+	height: 500px;
+    overflow: auto;
+}
+div.tableContainer table
+{
+    float: left;
+}
+html>body tbody.scrollContent 
+{
+    display:block;
+    height: 500px;
+    overflow: auto;
+}
+tbody.scrollContent td, tbody.scrollContent tr.normalRow td 
+{
+    padding-top: 2px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+}
+tbody.scrollContent tr.alternateRow td 
+{
+    padding-top: 2px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+} 
+
+/*CSS PARA SCROLL DE Dropdown*/
+
+.scrollable-menu 
+{
+    height: auto;
+    max-height: 150px;
+    overflow-x: hidden;
+}

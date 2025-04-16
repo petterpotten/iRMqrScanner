@@ -1,0 +1,849 @@
+<!--
+/*
+ * @Proyecto: iRMqrScanner v1.3
+ *  iRM
+       (Internal relationship management)
+ *     [Gestion de relaciones internas]
+ * @Autor: bypetterpotten
+ * @Fecha: Julio 2022
+ * 
+ * @ig: @bypetterpotten
+ */
+-->
+<!doctype html>
+<html lang="en-US" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+       
+    <title>iRM - QR Scanner</title>
+	
+	<link rel="shortcut icon" href="img/scan-icon-0.jpg"/>
+
+    <link href="css/all.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
+    <link href="css/fuelux.min.css" rel="stylesheet">
+    <link href="css/fuelux-responsive.min.css" rel="stylesheet"> 
+    <link href="css/Tabla.css" rel="stylesheet">
+    <link href="css/estilo.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    
+</head>
+<body class="fuelux">
+<!----------------------------------------------------------------------------------------------------------------------->
+	 <!--Login-->
+        <div id="Div_Login"  style="margin:0 auto;width:250px;">
+            <div style="width:250px;">
+                <div class="account-wall" style="height:320px;">
+                    <span class="badge" style="position:relative;top:-30px;left:35px;font-size:10pt;padding:05px;background-color:#e7e7ee;color:#b50606;">iRM - QR Scanner</span>
+                    <img style="position:relative;left:50px;top:-10px;" class="profile-img" src="img/logo/3.png" alt="Logotipo de farmacia La Más Barata">
+                        
+                    <div class="Login">
+                        <input type="text" required id="txt_Usuario" class="form-control" placeholder="Usuario"  style="position:relative;height:20px;margin:01px;width:70%;left:30px;">
+                        <input type="password" required id="txt_Password" class="form-control" placeholder="Contraseña" autocomplete="txt_Password" style="position:relative;height:20px;margin:01px;width:70%;left:30px;">
+                        <button class="btn btn-info" id="btn_Login" style="height:40px;width:75%;margin:25px;">Ingresar</button>                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--Login-->
+<!----------------------------------------------------------------------------------------------------------------------->
+        <div style="margin-left:0px;">
+          <br/>  
+<!----------------------------------------------------------------------------------------------------------------------->  
+          <!---DivMenu-->
+            <div id="Div_Menu" class="display-none" style="position:absolute;width:750px;left:40%; top:5px;">
+                <nav class="navbar navbar-default" role="navigation">
+                  <div class="container-fluid">
+                    <!-- Links Menus -->
+                    <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <!-- Logotipo -->
+                        <a id="lnk_Logotipo" class="navbar-brand" href="#"> <img src="img/logo/1.png" style="height:40px; width:45px;left:0px;">
+                        </a>
+                        <a id="lnk_Logotipo" class="navbar-brand" href="#"> <img src="img/user.jpg" style=" top:7px; height:40px; width:45px; border-radius:150px; position:absolute;left:-510px;">
+                        </a>
+                          <ul class="nav navbar-nav">
+                            <li class="active" style="position:absolute;left:-500px;"><a id="lnk_Bienvenido" href="#" iUsuario = "0">Bienvenido - </a></li>
+                            <li id="li_QR_Scanner"><a id="lnk_QR_Scanner" href="#">QR Scanner<span class="icon-qrcode"></span></a></li>
+                            <li id="li_Consulta"><a id="lnk_Consulta" href="#">Consulta<span class="icon-search"></span></a></li>
+                            <li id="li_Administrador" class="display-none"><a id="lnk_Administrador" href="#">Administrador<span class="icon-plus"></span></a></li>
+                          </ul> 
+                          <ul class="nav navbar-nav navbar-right">
+                            <li><a id="lnk_Logout" href="#" style="color:#ae4949;"> Cerrar sesion <span class="icon-off"></span></a></li>
+                          </ul>
+                    </div><!-- /.navbar-collapse -->
+                  </div><!-- /.container-fluid -->
+                </nav>
+            </div>
+          <!---DivMenu-->
+<!----------------------------------------------------------------------------------------------------------------------->
+	      <!---Div_QR_Scanner-->
+   			<div id="Div_QR_Scanner" class="display-none" style="position:relative;top:30px;">
+    			<div class="row">	
+    				<!---Div_QR_Scanner_Columna # 1-->		
+    				<div class="col-sm-6" >
+    					<h1><center><span class="badge badge-pill badge-info" style="height:25px; font-size:20px;">Escanéa el código QR que se encuentra en tu credencial.</span></center><h1>
+   						<!---Div_video-->
+    					<div class="col-sm-12">
+    						<video id="preview" class="p-1 border" style="width:95%;"></video>
+    					</div>
+    					<!---Div_video-->
+    					<!---Div_Botones_Camara-->
+    					<div class="col-sm-12" class="btn-group btn-group-toggle mb-5" data-toggle="buttons">
+    					  <!--<label class="btn btn-primary active">
+    						<input type="radio" name="options" value="1" autocomplete="off" checked> Cámara Frontal
+    					 </label>
+   						   <label class="btn btn-secondary">
+   							<input type="radio" name="options" value="2" autocomplete="off"> Cámara Trasera
+   						  </label>-->
+            				<button type="button" class="btn btn-danger" id="btn_iniciarScanner" style="position: relative;top:1px;"> Iniciar Scanner</button>
+           				   <button type="button" class="btn btn-warning" id="btn_detenerScanner" style="position: relative;top:1px;left:1px"> Detener Scanner</button>
+   						</div>
+    					<!---Div_Botones_Camara-->
+    				</div>
+    				<!---Div_QR_Scanner_Columna # 1-->	
+    				<!---Div_QR_Scanner_Columna # 2-->
+   					<div class="col-sm-6" style="top:50px;">
+   						<!---Div_Reloj-->
+   						<center>
+   							<span class="badge badge-pill badge-info" style=" width:95%; height:80px; font-size:65px;">
+   							    <center><div id="reloj" style="position:relative; top:20px;width:480px;"></div></center>
+   						    </span>
+   						</center>
+   						<!---Div_Reloj-->
+   					</br>
+   						<!---Div_Datos_Registrados-->
+    				 	<div class="account-wall" style="width:100%;">
+      				 		<form class="form-inline">
+  						    	<input id="txt_buscarRegistrosQrHoy" class="form-control mr-sm-0" type="search" placeholder="Buscar" aria-label="Buscar">
+  						    	<!---<button id="btn_buscarRegistrosQrHoy"class="btn btn-outline-success my-0 my-sm-0" type="submit" style="position: relative; left: -15px;">Buscar</button>-->
+  								<center>
+  		    				 			<span id="RegistrosQrHoy" class="badge badge-pill badge-info" style="top:0px; height:25px; font-size:20px;">0</span>
+  		    				 			<span class="badge badge-pill badge-info" style="top:0px; height:25px; font-size:20px;" >registros el dia de hoy.</span>
+  		    				 	</center>
+      				 		</form>
+      				 		<div class="tableContainerRegistrosQrHoy" class="form-group"> 
+                              <table id="tabla_QR_Scanner_Listar_RegistrosQr" class="tabla">
+                                    <thead>
+                                        <tr>
+                                            <th class="span1">Empleado</th>
+                                            <th class="span8">Nombre</th>
+                                            <th class="span4">Hora de Registro</th>
+                                            <th class="span1">Sucursal</th>
+                                            <th class="span8">Motivo</th>
+                                        </tr>
+                                    </thead>
+                                  <tbody id="tbody_QR_Scanner_Listar_RegistrosQr"></tbody>
+                              </table>
+                            </div>
+    				 	</div>
+    				 	<!---Div_Datos_Registrados-->
+    				</div>
+   					<!---Div_QR_Scanner_Columna # 2-->
+    			</div>
+    		</div>
+      		<!---Div_QR_Scanner-->
+<!----------------------------------------------------------------------------------------------------------------------->
+            <!--Div Bandejas-->
+            <center>
+	            <div id="Div_Bandejas" class="display-none" style="width:99%;position: relative;top: 50px">
+	                <h3>Bandeja de registros</h3>
+	                <!--Filtro por rango de Fechas-->
+	                <div class="well" style="position:relative;top:0px;left:0px;width:980px;">
+	                    <div class="form-group" style="position:relative;top:-20px;">
+	                    	<!--Fecha 1-->
+		                        <label for="dtp_FechaInicio" style="width:90px;float:left">Fecha Inicio </label>
+		                        <div class="datepicker dropdown" id="dtp_FechaInicio" style="width:200px;float:left;right:0px;">
+		                            <div class="input-append">
+		                                <div class="dropdown-menu"></div>
+		                                <input type="text" class="span2" value="" data-toggle="dropdown" style="height:31px;">
+		                                <button type="button" class="btn" data-toggle="dropdown"><i class="icon-calendar"></i></button>
+		                            </div>
+		                        </div>
+		                    	<!--Fecha 2-->
+		                        <label for="dtp_FechaFin" style="position:relative;width:90px;float:left;right:-5px;">Fecha Fin</label>
+		                        <div class="datepicker dropdown" id="dtp_FechaFin" style="width:200px;float:left;right:0px;">
+		                            <div class="input-append">
+		                                <div class="dropdown-menu"></div>
+		                                <input type="text" class="span2" value="" data-toggle="dropdown" style="height:31px;">
+		                                <button type="button" class="btn" data-toggle="dropdown"><i class="icon-calendar"></i></button>
+		                            </div>
+		                        </div>
+		                    	<!--Texto Filtro-->
+		                        <div class="form-group" style="position: relative; left: 150px;">
+		                        	<input type="search" id="txt_Filtrar" placeholder="Despues de buscar filtra aquí."; style="position:relative;width:200px;float:left;right:-10px;">
+		                    	</div>
+		                    	<!--btn Filtro-->
+		                    	<div class="form-group" style="position:relative;float:left;left:-200px;">
+			                        <button id="btn_Filtrar" type="button" class="btn btn-labeled btn-success">Buscar
+			                            <span class="btn-label"><i class="icon-search"></i></span>
+			                        </button>
+			                        <!--Excel-->
+			                        <!--
+			                       	    <a id="Exporta_Registros_Excel" href="#"> <img src="img/excel.png" style="position: relative; left: 250px;height:30px; width:35px;border-radius:10px;"></a>
+		                    	    -->
+		                    	</div>
+	                    </div>
+	                </div>
+                      <!-- TABLA REGISTROS -->
+                        <div class="tableContainer">
+                           <table id="tbl_Bandeja1" class="tabla" >
+                                  <thead>
+                                         <tr>
+                                            <th class="span1">Empleado</th>
+                                            <th class="span8">Nombre</th>
+                                            <th class="span4">Hora de Registro</th>
+                                            <th class="span2">Sucursal de Registro</th>
+                                      	    <th class="span8">Motivo</th>
+                                      	    <th class="span1">Sucursal Perteneciente</th>
+                                      	    <th class="span4">Tipo de Registro</th>
+                                      	    <th class="span1">Usuario</th>
+                                         </tr>
+                                   </thead>
+                                   <tbody id="tbody_Bandeja1"></tbody>
+                            </table>   
+                        </div> 
+                     <!-- *** -->
+            	</div>
+            </center>
+            <!--Div Bandejas-->
+<!----------------------------------------------------------------------------------------------------------------------->
+          <!--Div Administrador-->
+        <center>
+            <div id="Div_Administrador"class="display-none" style="width:99%;position: relative;top: 50px">
+                <h3>Administrador</h3>
+            </br>
+            </br>
+                <!--Menu-->
+                <div style="width:200px;float:left;">
+                    <ul class="nav nav-pills nav-stacked">
+                      <li class="active" id="li_Usuarios"><a href="#">Usuarios</a></li>
+                      <li id="li_Empleados"><a href="#">Empleados</a></li>
+                      <li id="li_QrEmergente"><a href="#">QR Emergente!</a></li>
+                      <li id="li_Sucursales"><a href="#">Sucursales</a></li>
+                      <li id="li_Empresas" class="display-none"><a href="#">Empresas</a></li>
+                    </ul>
+                </div>
+                <!--Div Contenido Administrador-->
+                <!--Div_Admin_Usuarios-->
+                <div id="Div_Admin_Usuarios" style="float:left;margin-left:20px;width:80%;margin-top:-40px;">
+                    <h4>Usuarios</h4>
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                            <input type="search" class="form-control" id="txt_Admin_Buscar_Usuario" placeholder="Buscar" style="width:300px;">
+                            <button id="btn_Admin_Buscar_Usuario" type="button" class="btn btn-labeled btn-success"><span class="btn-label"><i class="icon-search"></i></span> Buscar</button>
+                            <button id="btn_Admin_Agregar_Usuario" type="button" class="btn btn-labeled btn-success"><span class="btn-label"><i class="icon-plus"></i></span> Agregar Usuario</button>
+                        </div>
+                        <center>
+                        <div  class="tableContainer" class="form-group">
+                            <table class="tabla" style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th class="span1">Usuario</th>
+                                        <th class="span1">Password</th>
+                                        <th class="span2">Nombre</th>
+                                        <th class="span2">Apellidos</th>
+                                        <th class="span1">Rol</th>
+                                        <th class="span1">Sucursal</th>
+                                        <th class="span1">Estatus</th>
+                                        <th class="span2">Fecha Alta</th>
+                                        <th class="span1">Editar</th>
+                                        <th class="span1">Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_Admin_Usuarios"></tbody>
+                            </table>
+                        </div>
+                        <center>
+                    </form>
+                </div>
+                <!--Div_Admin_Usuarios-->
+<!----------------------------------------------------------------------------------------------------------------------->
+                <!--Div_Admin_Empleados-->
+                <div id="Div_Admin_Empleados" class="display-none" style="float:left;margin-left:20px;width:80%;margin-top:-40px;">
+                    <h4>Empleados</h4>
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                            <input type="search" class="form-control" id="txt_Admin_Buscar_Empleados" placeholder="Buscar" style="width:300px;">
+                            <button id="btn_Admin_Buscar_Empleados" type="button" class="btn btn-labeled btn-success"><span class="btn-label"><i class="icon-search"></i></span> Buscar</button>
+                            <button id="btn_Admin_Agregar_Empleados" type="button" class="btn btn-labeled btn-success"><span class="btn-label"><i class="icon-plus"></i></span> Agregar Empleado</button>
+                        </div>
+                        <center>
+                        <div  class="tableContainer" class="form-group">
+                            <table class="tabla" style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th >QR</th>
+                                        <th class="span1">Empresa</th>
+                                        <th class="span1">Num. Empleado</th>
+                                        <th class="span2">Nombre</th>
+                                        <th class="span2">Apellido</th>
+                                        <th class="span1">Rol</th>
+                                        <th class="span1">Sucursal</th>
+                                        <th class="span1">Estatus</th>                                        
+                                        <th class="span2">Fecha Alta</th>
+                                        <th class="span1">Editar</th>
+                                        <th class="span1">PDF</th>
+                                        <th class="span1">Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_Admin_Empleados"></tbody>
+                            </table>
+                        </div>
+                        <center>
+                    </form>
+                </div>
+                <!--Div_Admin_Empleados-->
+ <!----------------------------------------------------------------------------------------------------------------------->
+                <!--Div_Admin_QrEmergente-->
+                <div id="Div_Admin_QrEmergente" class="display-none" style="float:left;margin-left:20px;width:80%;margin-top:-40px;">
+                    <h4>Emergente</h4>
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                            <input type="search" class="form-control" id="txt_Admin_Buscar_QrEmergente" placeholder="Buscar" style="width:300px;">
+                            <button id="btn_Admin_Buscar_QrEmergente" type="button" class="btn btn-labeled btn-success"><span class="btn-label"><i class="icon-search"></i></span> Buscar</button>
+                            <button id="btn_Admin_Agregar_QrEmergente" type="button" class="btn btn-labeled btn-success"><span class="btn-label"><i class="icon-plus"></i></span> Registro Emergente</button>
+                        </div>
+                        <center>
+                        <div  class="tableContainer" class="form-group">
+                            <table class="tabla" style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th class="span1">Empleado</th>
+                                        <th class="span4">Nombre</th>
+                                        <th class="span4">Hora de Registro</th>
+                                        <th class="span1">Sucursal</th>
+                                        <th class="span4">Motivo</th>
+                                        <th class="span4">Usuario</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_Admin_QrEmergente"></tbody>
+                            </table>
+                        </div>
+                        <center>
+                    </form>
+                </div>
+                <!--Div_Admin_QrEmergente-->
+ <!----------------------------------------------------------------------------------------------------------------------->
+                <!--Div_Admin_Sucursales-->
+                <div id="Div_Admin_Sucursales" class="display-none" style="float:left;margin-left:20px;width:80%;margin-top:-40px;">
+                    <h4>Sucursales</h4>
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                            <input type="search" class="form-control" id="txt_Admin_Buscar_Sucursales" placeholder="Buscar" style="width:300px;">
+                            <button id="btn_Admin_Buscar_Sucursales" type="button" class="btn btn-labeled btn-success"><span class="btn-label"><i class="icon-search"></i></span> Buscar</button>
+                            <button id="btn_Admin_Agregar_Sucursales" type="button" class="btn btn-labeled btn-success"><span class="btn-label"><i class="icon-plus"></i></span> Agregar Sucursal</button>
+                        </div>
+                        <center>
+                        <div class="tableContainer" class="form-group">
+                            <table class="tabla" style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th class="span1">Sucursal</th>
+                                        <th class="span1">Tipo</th>
+                                        <th class="span1">Consultorio</th>
+                                        <th class="span1">Localidad</th>
+                                        <th class="span6">Calle</th>
+                                        <th class="span6">Zona</th>
+                                        <th class="span1">Colonia</th>
+                                        <th class="span6">Referencia</th>
+                                        <th class="span1">Estatus</th>
+                                        <th class="span1">Editar</th>
+                                        <th class="span1">Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_Admin_Sucursales"></tbody>
+                            </table>
+                        </div>
+                        <center>
+                    </form>
+                </div>
+                <!--Div_Admin_Sucursales-->   
+ <!----------------------------------------------------------------------------------------------------------------------->
+                <!--Div_Admin_Empresas-->
+                <div id="Div_Admin_Empresas" class="display-none" style="float:left;margin-left:20px;width:80%;margin-top:-40px;">
+                    <h4>Empresas</h4>
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                            <input type="search" class="form-control" id="txt_Admin_Buscar_Empresas" placeholder="Buscar" style="width:300px;">
+                            <button id="btn_Admin_Buscar_Empresas" type="button" class="btn btn-labeled btn-success"><span class="btn-label"><i class="icon-search"></i></span> Buscar</button>
+                            <button id="btn_Admin_Agregar_Empresas" type="button" class="btn btn-labeled btn-success"><span class="btn-label"><i class="icon-plus"></i></span> Agregar Empresa</button>
+                        </div>
+                        <center>
+                        <div  class="tableContainer" class="form-group">
+                            <table class="tabla" style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th class="span1">Empresa</th>
+                                        <th class="span6">Nombre</th>
+                                        <th class="span1">Rfc</th>
+                                        <th class="span1">Estatus</th>
+                                        <th class="span1">Fecha Alta</th>
+                                        <th class="span1">Editar</th>
+                                        <th class="span1">Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_Admin_Empresas"></tbody>
+                            </table>
+                        </div>
+                        <center>
+                    </form>
+                </div>
+                <!--Div_Admin_Empresas-->          
+                <!--Div Contenido Administrador-->
+            </div>
+         </center>
+            <!--Div Administrador-->
+<!----------------------------------------------------------------------------------------------------------------------->
+          <!--Modal Mensajes-->
+            <div class="modal fade" id="Modal_Mensajes" ><!--style="height:35%; width:35%" role="dialog" -->
+              <center>
+	              <div class="modal-dialog">
+	                <div class="modal-content">
+	                  <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="top:8px">&times;</button>
+	                    <span class="badge" style="background-color:#26767B;color:#B7BCBE;"><h4 style="font-weight: bolder;font-size: 10pt;" class="modal-title">¡Atención!</h4></span>
+	                  </div>
+	                  <div class="modal-body">
+	                    <span class="badge" style="background-color:#26767B;color:B7BCBE;"><p style="font-weight: bolder;font-size: 10pt;" id="Modal_Mensaje"></p></span>
+	                  </div>
+	                  <div class="modal-footer">
+	                    <button type="button" class="btn btn-info" id="btn_Modal_Mensajes" data-dismiss="modal">Aceptar</button>
+	                  </div>
+	                </div><!-- /.modal-content -->
+	              </div><!-- /.modal-dialog -->
+               </center>
+            </div><!-- /.modal -->
+          <!--Modal Mensajes-->  
+<!----------------------------------------------------------------------------------------------------------------------->
+          <!--Modal Motivo_Registro-->
+            <div class="modal fade" id="Modal_Motivo_Registro" role="dialog" style="height:40%; width:35%">
+              <center>
+	              <div class="modal-dialog">
+	                <div class="modal-content">
+	                  <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                    <span class="badge" style="background-color:#26767B;color:#B7BCBE;"><h4 style="font-weight: bolder;font-size: 12pt;" class="modal-title">¡Atención!</h4></span>
+	                  </div>
+	                  <div class="modal-body">
+	                   	<form role="form">
+							<div class="form-group">
+					            <label for="txt_Modal_Motivo_Registro" class="col-form-label">Ingresar Motivo de visita a la sucursal:</label>
+					            <textarea class="form-control" id="txt_Modal_Motivo_Registro" style="height:50%; width:80%"></textarea>
+				         	</div>                    	
+	                  	</form>
+	                  </div>
+	                  <div class="modal-footer">
+	                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="btn-label"><i class="icon-remove"></i></span>Cancelar</button>
+	                    <button type="button" class="btn btn-info" id="btn_Modal_Motivo_Registro" iQr = "0"><span class="btn-label"><i class="icon-ok"></i></span>Aceptar</button>
+	                  </div>
+	                </div><!-- /.modal-content -->
+	              </div><!-- /.modal-dialog -->
+              </center>
+            </div><!-- /.modal -->
+          <!--Modal Motivo_Registro--> 
+<!----------------------------------------------------------------------------------------------------------------------->    
+      		<!--Modal Usuarios-->
+            <div class="modal fade" id="Modal_Usuarios" role="dialog" style="margin-top:0px; height:97%;">
+              <div class="modal-dialog" style="height:97%;">
+                <div class="modal-content" style="height:97%;">
+                  <div class="modal-header" style="margin-top:0px;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Usuario</h4>
+                  </div>
+                  <div class="modal-body">
+                     <form role="form">
+                        <div class="form-group" style="float:left;margin-right:20px;">
+                            <label for="txt_Usuarios_Usuario">Usuario</label>
+                            <input type="search" class="form-control" id="txt_Usuarios_Usuario" placeholder="Usuario" style="width:100%;">
+                        </div>
+                         <div class="form-group" style="float:left;">
+                            <label for="txt_Usuarios_Password">Password</label>
+                            <input type="search" class="form-control" id="txt_Usuarios_Password" placeholder="Password" style="width:100%;">
+                        </div>
+                        <div class="form-group" style="float:left;margin-right:20px;">
+                            <label for="txt_Usuarios_Nombre">Nombre</label>
+                            <input type="search" class="form-control" id="txt_Usuarios_Nombre" placeholder="Nombre" style="width:100%;">
+                        </div>
+                        <div class="form-group" style="float:left;">
+                            <label for="txt_Usuarios_Apellidos">Apellidos</label>
+                            <input type="search" class="form-control" id="txt_Usuarios_Apellidos" placeholder="Apellidos" style="width:100%;">
+                        </div>
+                        <div class="form-group" style="float:left;margin-right:20px;">
+                            <label for="cmb_Usarios_Sucursal">Sucursal</label>                            
+                            <div class="select btn-group" id="cmb_Usarios_Sucursal"  iSucursal = "0" style="width:150px;">
+                                <button type="button" data-toggle="dropdown" class="btn dropdown-toggle" style="width:150px"><span class="dropdown-label" style="width:85%"></span></button>
+                                <ul class="dropdown-menu scrollable-menu" role="menu" style="width:100%;"> </ul>
+                            </div>
+                        </div>                        
+                        <div class="form-group" style="float:left;margin-right:20px;">
+                            <label for="cmb_Usuarios_Rol">Rol</label>                            
+                            <div class="select btn-group" id="cmb_Usuarios_Rol" style="width:110px;">
+                                <button type="button" data-toggle="dropdown" class="btn dropdown-toggle" style="width:130px"><span class="dropdown-label" style="width:85%"></span></button>
+                                <ul class="dropdown-menu" style="width:100%;">	
+                                    <li data-value="1" data-selected="true"><a href="#">Administrador</a></li>
+                                    <li data-value="2"><a href="#">Mesa-Control</a></li>
+                                    <li data-value="3"><a href="#">Nominas</a></li>
+                                    <li data-value="3"><a href="#">Recursos-Humanos</a></li>
+                                    <li data-value="4"><a href="#">Sucursal</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group" style="float:left;margin-right:40px;">
+                            <label for="cmb_Usuarios_Estatus">Estatus</label>                            
+                            <div class="select btn-group" id="cmb_Usuarios_Estatus" style="width:100px;">
+                                <button type="button" data-toggle="dropdown" class="btn dropdown-toggle" style="width:100%"><span class="dropdown-label" style="width:85%"></span></button>
+                                <ul class="dropdown-menu" style="width:100%;">
+                                    <li data-value="1" data-selected ="true"><a href="#">Activo</a></li>
+                                    <li data-value="0"><a href="#">Inactivo</a></li>
+                                </ul>
+                            </div>
+                        </div> 
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="btn-label"><i class="icon-remove"></i></span>Cancelar</button>
+                    <button type="button" class="btn btn-info" id="btn_Usuarios_Aceptar" iUsuario = "0"><span class="btn-label"><i class="icon-ok"></i></span>Aceptar</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+          <!--Modal Usuarios-->
+<!----------------------------------------------------------------------------------------------------------------------->
+          <!--Modal Empleados-->
+            <div class="modal fade" id="Modal_Empleados" role="dialog" style="margin-top:20px; height:100%;">
+              <div class="modal-dialog" style="height:100%;">
+                <div class="modal-content" style="height:100%;">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Empleados</h4>
+                  </div>
+                  <div class="modal-body">
+                     <form role="form">
+                        <div class="form-group" style="float:left;margin-right:20px;">
+                            <label for="txt_Empleados_Nombre">Nombre</label>
+                            <input type="search" class="form-control" id="txt_Empleados_Nombre" placeholder="Nombre" style="width:100%;">
+                        </div>
+                        <div class="form-group" style="float:left;">
+                            <label for="txt_Empleados_Apellidos">Apellidos</label>
+                            <input type="search" class="form-control" id="txt_Empleados_Apellidos" placeholder="Apellidos" style="width:100%;">
+                        </div>
+
+                        <div class="form-group" style="float:left;margin-right:20px;">
+                            <label for="txt_Empleados_QrCode">Codigo QR</label>
+                            <input class="border border-secondary" type="search" id="txt_Empleados_QrCode" value="" style="width:100%;left: -10px;" placeholder="Qr - Generado" disabled>
+                            <center>
+                              <div class="well border border-secondary" id="div_Empleados_QrCode" style="width:186px;height:186px;"></div>  
+                            </center>
+                         </div>
+
+                        <div class="form-group" style="float:left;margin-right:20px;">
+                            <label for="txt_Empleados_NumEmpleado">N° Empleado</label>
+                            <input type="search" class="form-control" id="txt_Empleados_NumEmpleado" placeholder="Numero Empleado" style="width:100%;">
+                         </div>
+
+                        <div class="form-group" style="float:left;">
+                            <label for="cmb_Empleados_Empresa">Empresa</label>                            
+                            <div class="select btn-group" id="cmb_Empleados_Empresa" style="width:120px;">
+                                <button type="button" data-toggle="dropdown" class="btn dropdown-toggle" style="width:120px"><span class="dropdown-label" style="width:85%"></span></button>
+                                <ul class="dropdown-menu scrollable-menu" role="menu" style="width:100%;"></ul>
+                            </div>
+                        </div> 
+
+                        <div class="form-group" style="float:left;">
+                            <label for="cmb_Empleados_Sucursal">Sucursal</label>                            
+                            <div class="select btn-group" id="cmb_Empleados_Sucursal" style="width:120px;">
+                                <button type="button" data-toggle="dropdown" class="btn dropdown-toggle" style="top:0px;width:120px"><span class="dropdown-label" style="width:85%"></span></button>
+                                <ul class="dropdown-menu scrollable-menu" role="menu" style="width:100%;"></ul>
+                            </div>
+                         </div>                       
+                        <div class="form-group" style="float:left;">
+                            <label for="cmb_Empleados_Rol">Rol</label>                            
+                            <div class="select btn-group" id="cmb_Empleados_Rol" style="width:150px;">
+                                <button type="button" data-toggle="dropdown" class="btn dropdown-toggle" style="top:0px; width:150px"><span class="dropdown-label" style="width:85%"></span></button>
+                                <ul class="dropdown-menu scrollable-menu" role="menu" style="width:100%;">
+                                </ul>
+                            </div>
+                         </div>
+                        <div class="form-group" style="float:left;">
+                            <label for="cmb_Empleados_Estatus">Estatus</label>                            
+                            <div class="select btn-group" id="cmb_Empleados_Estatus" style="width:80px;">
+                                <button type="button" data-toggle="dropdown" class="btn dropdown-toggle" style="width:80px"><span class="dropdown-label" style="width:85%"></span></button>
+                                <ul class="dropdown-menu" style="width:100%;">
+                                    <li data-value="1" data-selected="true"><a href="#">Activo</a></li>
+                                    <li data-value="0"><a href="#">Inactivo</a></li>
+                                </ul>
+                            </div>
+                        </div> 
+                      </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="btn-label"><i class="icon-remove"></i></span>Cancelar</button>
+                    <button type="button" class="btn btn-info" id="btn_Empleados_Aceptar" iEmpleado = "0"><span class="btn-label"><i class="icon-ok"></i></span>Aceptar</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+          <!--Modal Empleados-->
+ <!----------------------------------------------------------------------------------------------------------------------->         
+          <!--Modal Emergente-->
+            <div class="modal fade" id="Modal_Emergente" role="dialog" style="margin-top:20px; height:100%;">
+              <center>
+                  <div class="modal-dialog" style="height:100%;">
+                    <div class="modal-content" style="height:100%;">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <span class="badge" style="background-color:#b50606;color:white;"><h4 style="font-weight: bolder;font-size: 12pt;" class="modal-title">¡Atención!</h4></span>
+                      </div>
+                      <div class="modal-body">
+                        <form role="form">
+                            <center>
+                            <div class="form-group" style="float:left;margin-right:20px;width:40%;">
+                                <label for="cmb_Emergente_Sucursal">Sucursal</label>                            
+                                <div class="select btn-group" id="cmb_Emergente_Sucursal" style="width:100%;">
+                                    <button type="button" data-toggle="dropdown" class="btn dropdown-toggle" style="top:0px;width:100%"><span class="dropdown-label" style="width:85%"></span></button>
+                                    <ul class="dropdown-menu scrollable-menu" role="menu" style="width:100%;"></ul>
+                                </div>
+                            </div> 
+                            <div class="form-group" style="float:left;margin-right:20px;">
+                                <label for="txt_Emergente_NumEmpleado">Numero de Empleado</label>
+                                <input type="search" class="form-control" id="txt_Emergente_NumEmpleado" placeholder="Numero de Empleado" style="width:100%;">
+                            </div>  
+                            <div class="form-group" style="position:absolute;float:left;left:400px;top:40px;">
+                                <button id="btn_Filtrar_Emergente_NumEmpleado" type="button" class="btn btn-labeled btn-success">
+                                    <span class="btn-label"><i class="icon-search"></i></span>
+                                </button>
+                            </div>
+                            <div class="form-group" style="float:left;margin-right:20px;">
+                                <label for="txt_Emergente_Nombre">Nombre</label>
+                                <input type="search" class="form-control" id="txt_Emergente_Nombre" placeholder="Nombre" disabled="true" style="width:100%;">
+                            </div>
+
+                            <div class="form-group" style="float:left;margin-right:20px;">
+                                <label for="txt_Emergente_Rol">Rol</label>
+                                <input type="search" class="form-control" id="txt_Emergente_Rol" placeholder="Rol" disabled="true" style="width:100%;">
+                            </div>
+
+                            <div class="form-group" style="float:left;margin-right:20px;width:100%">
+                                <label for="txt_Modal_Motivo_Emergente">Ingresar Motivo</label>
+                                <textarea class="form-control" id="txt_Modal_Motivo_Emergente" style="height:100%; width:100%"></textarea>
+                            </div>   
+                            <center>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="btn-label"><i class="icon-remove"></i></span>Cancelar</button>
+                        <button type="button" class="btn btn-info" id="btn_Modal_Emergente" iUsuario = "0"><span class="btn-label"><i class="icon-ok"></i></span>Aceptar</button>
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+              </center>
+            </div><!-- /.modal -->
+          <!--Modal Emergente-->
+<!----------------------------------------------------------------------------------------------------------------------->
+          <!--Modal Empleados_Encontrados-->
+          <!--
+            <div class="modal fade" id="Modal_Empleados_Encontrados">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Empleados encontrados</h4>
+                  </div>
+                  <div class="modal-body">
+                      <table class="tabla">
+                          <thead>
+                              <tr>
+                                  <th>EmpleadoQr</th>
+                                  <th class="span1">Nombre</th>
+                                  <th>Rol</th>
+                                  <th class="span1">Ver</th>
+                              </tr>
+                          </thead>
+                          <tbody id="tbody_Empleados_Encontrados"></tbody>
+                      </table>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                  </div>
+                </div>
+              </div>
+            </div>-->
+
+            <!--Modal Articulos_Encontrados-->
+<!----------------------------------------------------------------------------------------------------------------------->         
+          <!--Modal Sucursales-->
+         <center>
+            <div class="modal fade" id="Modal_Sucursales" role="dialog" style="margin-top:0px; height:100%;">
+                  <div class="modal-dialog" style="width: 100%; height:100%;">
+                    <div class="modal-content" style="width: 100%; height:100%;">
+                      <div class="modal-header">
+                      </div>
+                      <div class="modal-body">
+                        <form role="form">
+                            <div class="form-group" style="float:left;margin-left:-40px;">
+                                <label for="txt_Sucursales_Sucursal">Sucursal</label>
+                                <input type="search" class="form-control" id="txt_Sucursales_Sucursal" placeholder="Sucursal" style="width:50%;">
+                            </div>  
+                            <div class="form-group" style="position:absolute;float:left;left:100px;top:40px;">
+                                <button id="btn_Buscar_Sucursales_Sucursal" type="button" class="btn btn-labeled btn-success">
+                                    <span class="btn-label"><i class="icon-search"></i></span>
+                                </button>
+                            </div>
+
+                            <div class="form-group" style="float:left;margin-right:2px;">
+                                <label for="cmb_Sucursales_Tipo">Tipo</label>                            
+                                <div class="select btn-group" id="cmb_Sucursales_Tipo" style="width:100px;">
+                                    <button type="button" data-toggle="dropdown" class="btn dropdown-toggle" style="width:110px"><span class="dropdown-label" style="width:85%"></span></button>
+                                    <ul class="dropdown-menu" style="width:100%;">  
+                                        <li data-value="1" data-selected="true"><a href="#">FARMACIA</a></li>
+                                        <li data-value="2"><a href="#">OPTICA</a></li>
+                                        <li data-value="3"><a href="#">MERCADO</a></li>
+                                        <li data-value="3"><a href="#">CEDIS</a></li>
+                                        <li data-value="4"><a href="#">OFICINA</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="float:left;margin-right:2px;">
+                                <label for="cmb_Sucursales_Consultorio">Consultorio</label>                            
+                                <div class="select btn-group" id="cmb_Sucursales_Consultorio" style="width:50px;">
+                                    <button type="button" data-toggle="dropdown" class="btn dropdown-toggle" style="width:50px"><span class="dropdown-label" style="width:85%"></span></button>
+                                    <ul class="dropdown-menu" style="width:100%;">  
+                                        <li data-value="1" data-selected="true"><a href="#">SI</a></li>
+                                        <li data-value="2"><a href="#">NO</a></li>    
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="float:left;">
+                                <label for="cmb_Sucursales_Localidad">Localidad</label>                            
+                                <div class="select btn-group" id="cmb_Sucursales_Localidad" style="width:140px;">
+                                    <button type="button" data-toggle="dropdown" class="btn dropdown-toggle" style="width:140px"><span class="dropdown-label" style="width:85%"></span></button>
+                                    <ul class="dropdown-menu" style="width:100%;">  
+                                        <li data-value="1" data-selected="true"><a href="#">TIJUANA</a></li>
+                                        <li data-value="2"><a href="#">ROSARITO</a></li>
+                                        <li data-value="3"><a href="#">TECATE</a></li>
+                                        <li data-value="3"><a href="#">MEXICALI</a></li>
+                                        <li data-value="4"><a href="#">GUADALAJARA</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group" style="float:left;position:absolute;left: initial;width:110px;top: 21.5%;">
+                                <label for="txt_Sucursales_Zona">Zona</label>
+                                <input type="search" class="form-control" id="txt_Sucursales_Zona" placeholder="Zona"style="width:100%;">
+                            </div>
+                            <div class="form-group" style="float:left;margin-left:-2px;">
+                                <label for="txt_Sucursales_Colonia">Colonia</label>
+                                <input type="search" class="form-control" id="txt_Sucursales_Colonia" placeholder="Colonia"style="width:100%;">
+                            </div>
+                            <div class="form-group" style="float:left;">
+                                <label for="cmb_Sucursales_Estatus">Estatus</label>                            
+                                <div class="select btn-group" id="cmb_Sucursales_Estatus" style="width:90px;">
+                                    <button type="button" data-toggle="dropdown" class="btn dropdown-toggle" style="width:90px"><span class="dropdown-label" style="width:85%"></span></button>
+                                    <ul class="dropdown-menu" style="width:85%;">  
+                                        <li data-value="1" data-selected="true"><a href="#">Activo</a></li>
+                                        <li data-value="2"><a href="#">Inactivo</a></li>
+                                    </ul>
+                                </div>
+                            </div> 
+                            <div class="form-group" style="float:left;margin-right:20px;width:95%">
+                                <label for="txt_Sucursales_CalleNum">Calle y Numero</label>
+                                <input type="search" class="form-control" id="txt_Sucursales_CalleNum" placeholder="Colonia"style="width:100%;">
+                            </div>
+                            <div class="form-group" style="float:left;margin-right:20px;width:100%">
+                                <label for="txt_Sucursales_Referencia">Referencia</label>
+                                <textarea class="form-control" id="txt_Sucursales_Referencia" style="height:100%; width:100%"></textarea>
+                            </div>   
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="btn-label"><i class="icon-remove"></i></span>Cancelar</button>
+                        <button type="button" class="btn btn-info" id="btn_Modal_Sucursales" iSucursal = "0"><span class="btn-label"><i class="icon-ok"></i></span>Aceptar</button>
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+         <center>
+          <!--Modal Sucursales--> 
+<!----------------------------------------------------------------------------------------------------------------------->         
+          <!--Modal Empresas-->
+         <!--<center>
+            <div class="modal fade" id="Modal_Empresas" role="dialog" style="height:70%; width:35%">
+                  <div class="modal-dialog" style="height:90%;">
+                    <div class="modal-content" style="height:90%;">
+                      <div class="modal-header">
+                        <span class="badge" style="background-color:#b50606;color:white;"><h4 style="font-weight: bolder;font-size: 12pt;" class="modal-title">Alta Empresas!</h4></span>
+                      </div>
+                      <div class="modal-body">
+                        <form role="form">
+                            <div class="form-group" style="float:left;margin-left:20px;">
+                                <label for="txt_Empresas_Rfc">Rfc</label>
+                                <input type="search" class="form-control" id="txt_Empresas_Rfc" placeholder="Rfc" style="width:100%;">
+                            </div>  
+                            <div class="form-group" style="position:absolute;float:left;left:200px;top:40px;">
+                                <button id="btn_Buscar_Empresas_Empresa" type="button" class="btn btn-labeled btn-success">
+                                    <span class="btn-label"><i class="icon-search"></i></span>
+                                </button>
+                            </div>
+                            <div class="form-group" style="float:left;margin-left:20px;">
+                                <label for="txt_Empresas_Clave">Clave</label>
+                                <input type="search" class="form-control" id="txt_Empresas_Clave" placeholder="Clave"style="width:50%;">
+                            </div>
+                            <div class="form-group" style="float:left;margin-left:20px;">
+                                <label for="txt_Empresas_Nombre">Razón Social</label>
+                                <input type="search" class="form-control" id="txt_Empresas_Nombre" placeholder="Nombre"style="width:100%;">
+                            </div>
+                            <div class="form-group" style="float:left;margin-left:60px;">
+                                <label for="cmb_Empresas_Estatus">Estatus</label>                            
+                                <div class="select btn-group" id="cmb_Sucursales_Estatus" style="width:90px;">
+                                    <button type="button" data-toggle="dropdown" class="btn dropdown-toggle" style="width:90px"><span class="dropdown-label" style="width:85%"></span></button>
+                                    <ul class="dropdown-menu" style="width:85%;">  
+                                        <li data-value="1" data-selected="true"><a href="#">Activo</a></li>
+                                        <li data-value="2"><a href="#">Inactivo</a></li>
+                                    </ul>
+                                </div>
+                            </div>   
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="btn-label"><i class="icon-remove"></i></span>Cancelar</button>
+                        <button type="button" class="btn btn-warning" id="btn_Modal_Empresas" iUsuario = "0"><span class="btn-label"><i class="icon-ok"></i></span>Aceptar</button>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+         <center>-->
+          <!--Modal Empresas-->   
+<!----------------------------------------------------------------------------------------------------------------------->
+        </div> <!-- Cierre del : "<div style="margin-left:10px;">"-->	
+<!----------------------------------------------------------------------------------------------------------------------->
+    <script src="js/jquery-3.4.1.min.js"></script> 
+    <script src="js/loader.js"></script> 
+    <script src="js/jquery.cookie.js"></script>
+
+
+    <script src="js/jquery.tablesorter.min.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script> 
+    
+    <script type="text/javascript" src="js/qrcode.js"></script>
+
+<!--
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+-->
+    <script src="js/instascan.min.js" crossorigin="anonymous"></script> 
+
+    <script src="js/highcharts/highcharts.js"></script>
+    <script src="js/highcharts/modules/data.js"></script>
+    <script src="js/highcharts/modules/exporting.js"></script>
+    
+    <script type="text/javascript"></script>
+    <script type="text/javascript" src="js/script.js"></script> 
+<!----------------------------------------------------------------------------------------------------------------------->
+</body>
+</html>

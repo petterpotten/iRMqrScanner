@@ -1,0 +1,188 @@
+/*
+ * @Proyecto: iRMqrScanner v1.3
+ *  iRM
+       (Internal relationship management)
+ *     [Gestion de relaciones internas]
+ * @Autor: bypetterpotten
+ * @Fecha: Julio 2022
+ * 
+ * @ig: @bypetterpotten
+ */
+
+
+.tabla a:link {
+	color: #666;
+	font-weight: bold;
+	text-decoration:none;
+}
+.tabla a:visited {
+	color: #999999;
+	font-weight:bold;
+	text-decoration:none;
+}
+.tabla a:active,
+.tabla a:hover {
+	color: #bd5a35;
+	text-decoration:underline;
+}
+.tabla 
+{
+	width:100%;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#202020;
+	font-size:10px;
+	font-weight: bold;
+	/*text-shadow: 1px 1px 0px #fff;*/
+	background:#eaebec;
+	/*margin:5px;*/
+	border:#ccc 1px solid;
+
+	/*-moz-border-radius:3px;*/
+	-webkit-border-radius:3px;
+	border-radius:3px;
+}
+.tabla th {
+	padding:10px;
+	border-top:1px solid #fafafa;
+	border-bottom:1px solid #e0e0e0;
+
+	background: #ededed;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+	background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
+}
+.tabla th:first-child {
+	text-align: left;
+	padding-left:20px;
+}
+.tabla tr:first-child th:first-child {
+	/*-moz-border-radius-topleft:3px;*/
+	-webkit-border-top-left-radius:3px;
+	border-top-left-radius:3px;
+}
+.tabla tr:first-child th:last-child {
+	/*-moz-border-radius-topright:3px;*/
+	-webkit-border-top-right-radius:3px;
+	border-top-right-radius:3px;
+}
+.tabla tr {
+	text-align: center;
+	padding-left:20px;
+}
+.tabla td:first-child {
+	text-align: left;
+	padding-left:20px;
+	border-left: 0;
+}
+.tabla td {
+	padding:10px;
+	border-top: 1px solid #ffffff;
+	border-bottom:1px solid #e0e0e0;
+	border-left: 1px solid #e0e0e0;
+}
+.tabla tr.even td {
+	background: #f6f6f6; /*#bd5a35;*/
+	background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
+	background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6);
+}
+.tabla tr:last-child td {
+	border-bottom:0;
+}
+.tabla tr:last-child td:first-child {
+	/*-moz-border-radius-bottomleft:3px;*/
+	-webkit-border-bottom-left-radius:3px;
+	border-bottom-left-radius:3px;
+}
+.tabla tr:last-child td:last-child {
+	/*-moz-border-radius-bottomright:3px;*/
+	-webkit-border-bottom-right-radius:3px;
+	border-bottom-right-radius:3px;
+}
+.tabla tr:hover td 
+{
+	background: #428BCA;
+}
+
+.activo
+{
+    background: #428BCA;
+}
+
+
+/* SCROLL DE TABLA RegistrosQrHoy */
+div.tableContainerRegistrosQrHoy 
+{
+    clear: both;
+    height: 345px;
+    overflow: auto;             
+}
+div.tableContainerRegistrosQrHoy table 
+{
+    float: left;
+}
+html>body tbody.scrollContentRegistrosQrHoy 
+{
+    display:block;
+    height: 345px;
+    overflow: auto;
+}
+tbody.scrollContentRegistrosQrHoy td, tbody.scrollContentRegistrosQrHoy tr.normalRowRegistrosQrHoy td 
+{
+    padding-top: 2px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+}
+tbody.scrollContentRegistrosQrHoy tr.alternateRowRegistrosQrHoy td 
+{
+    padding-top: 2px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+}
+
+
+
+/*CSS PARA SCROLL DE TABLAS Consulta*/
+
+div.tableContainer 
+{
+	clear: both;
+	height: 500px;
+    overflow: auto;
+}
+div.tableContainer table
+ {
+    float: left;
+}
+html>body tbody.scrollContent 
+{
+    display:block;
+    height: 500px;
+    overflow: auto;
+}
+tbody.scrollContent td, tbody.scrollContent tr.normalRow td 
+{
+    padding-top: 2px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+}
+tbody.scrollContent tr.alternateRow td 
+{
+    padding-top: 2px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+} 
+
+
+
+
+/*CSS PARA SCROLL DE Dropdown*/
+
+.scrollable-menu 
+{
+    height: auto;
+    max-height: 150px;
+    overflow-x: hidden;
+}
